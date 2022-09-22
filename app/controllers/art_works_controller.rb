@@ -16,6 +16,7 @@ class ArtWorksController < ApplicationController
     if @art_work.save
       redirect_to '/'
     else
+      flash.alert = @art_work.errors.full_messages
       render '/art_works/new'
     end
   end

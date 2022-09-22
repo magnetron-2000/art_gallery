@@ -6,3 +6,12 @@
   <%= f.file_field :attachment %>
   <%= f.submit %>
 <% end %>
+
+
+<% flash.each do |type, msgs| %>
+  <% msgs.each do |message| %>
+    <div class="alert alert-info" >
+      <%= message %>
+    </div>
+  <%end %>
+<% end %>
