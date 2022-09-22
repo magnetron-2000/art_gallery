@@ -1,0 +1,5 @@
+<h1>Artists</h1>
+
+<% @users.each do |artist| %>
+  <a href="/art_works/<%=artist.id %>"><%= artist.nickname %></a><br>
+<%end %>

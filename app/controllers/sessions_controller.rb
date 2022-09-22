@@ -8,16 +8,16 @@ class SessionsController < ApplicationController
     @user = User.find_by(nickname: params[:nickname])
     if @user.password == params[:password]
       session[:user_id] = @user.id
-      redirect_to '/welcome'
+      redirect_to '/'
     else
-      redirect_to '/login'
+      redirect_to '/sessions/new'
     end
   end
 
   def destroy
-    if session[:user_id]
+    if session[:user_id] == params[:id].to_i
       session[:user_id] = nil
-      redirect_to '/welcome'
+      redirect_to '/'
     end
   end
 

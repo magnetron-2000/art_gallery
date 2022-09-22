@@ -1,10 +1,17 @@
 <h1>Welcome</h1>
 
 <% if logged_in? %>
-  <h1>You are Logged In, <%= current_user.nickname %></h1>
+  <h1>You are Logged In, <%= current_user.nickname %></h1><br>
+
+  <p><%= button_to "add new work", "/art_works/new", method: :get %></p>
+  <p><%= button_to "Log out", "/sessions/#{current_user.id}", method: :delete %></p>
+
+  <a href="/users">artist page</a>
+  <%else %>
+  <p><%= button_to "Login", '/sessions/new', method: :get %></p>
+  <p><%= button_to "Sign Up", '/users/new', method: :get %></p>
 <%end%>
 
-<p><%= button_to "Login", '/login', method: :get %></p>
-<p><%= button_to "Sign Up", '/sign_up', method: :get %></p>
-<p><%= button_to "Log out", '/logout', method: :post %></p>
+
+
 
