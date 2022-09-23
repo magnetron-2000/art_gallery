@@ -6,10 +6,25 @@
     <%= csp_meta_tag %>
 
     <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
     <%#= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
   <body>
+  <div class="topnav">
+    <%= button_to "Home page", "/", :id => 'nav-button', method: :get %>
+    <% if logged_in? %>
+      <%= button_to "Artist page", "/users", :id => 'nav-button', method: :get %>
+      <%= button_to "Log out", "/sessions/#{current_user.id}", :id => 'nav-button', method: :delete %>
+      <p class = 'nav-string'>Hello, <%= current_user.nickname %></p>
+    <%else %>
+      <%= button_to "Login", '/sessions/new', :id => 'nav-button', method: :get %>
+      <%= button_to "Sign Up", '/users/new',:id => 'nav-button', method: :get %>
+    <%end %>
+
+  </div>
+  <div class="main-body">
     <%= yield %>
+  </div>
   </body>
 </html>
