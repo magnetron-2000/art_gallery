@@ -9,17 +9,16 @@ class ArtWorksController < ApplicationController
 
   def new
     @art_work = ArtWork.new
-    render '/art_works/new'
   end
 
   def create
     @art_work = ArtWork.new(art_params)
     @art_work.user_id = current_user.id
     if @art_work.save
-      redirect_to '/'
+      redirect_to root_path
     else
       flash.alert = @art_work.errors.full_messages
-      render '/art_works/new'
+      render :new
     end
   end
 
@@ -28,21 +27,22 @@ class ArtWorksController < ApplicationController
 
   def update
     if @art_work.update(art_params)
-      redirect_to "/art_works/#{current_user.id}"
+      redirect_to art_work_path(current_user.id)
     else
-      render "/art_works/#{@art_work.id}/edit"
+      flash.alert = @art_work.errors.full_messages
+      redirect_to edit_art_work_path(@art_work)
     end
   end
 
   def destroy
     @art_work.destroy
-    redirect_to "/art_works/#{current_user.id}"
+    redirect_to art_work_path(current_user)
   end
 
   def let_change # Allow author to update and delete only his ArtWork
     if current_user.id != @art_work.user_id
-      flash.alert = "You can not change someone else's work"
-      redirect_to "/users"
+      flash.alert =  I18n.t "access_deny"
+      redirect_to users_path
     end
   end
 

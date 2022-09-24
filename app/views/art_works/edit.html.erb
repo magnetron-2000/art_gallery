@@ -1,8 +1,9 @@
 <h1>Update work</h1>
-
-<%= form_for :art_work, url: "/art_works/#{@art_work.id}", html: {multipart: true}, method: :patch do |f| %>
-  <%= f.label :title %><br>
-  <%= f.text_field :title %><br>
-  <%= f.file_field :attachment %>
-  <%= f.submit %>
-<% end %>
+<div class="form-wrap">
+  <%= form_for :art_work, url: art_work_path(@art_work), html: {multipart: true}, method: :patch do |f| %>
+    <%= f.label :title %><br>
+    <%= f.text_field :title %><br>
+    <%= f.file_field :attachment %>
+    <%= f.submit %>
+  <% end %>
+</div>

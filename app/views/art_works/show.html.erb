@@ -1,15 +1,18 @@
 <h1>arts list</h1>
-<% if @art_works %>
-  <% @art_works.each do |art| %>
-    <img src="<%= art.attachment %>" class="image">
-    <% if art.user_id == current_user.id %>
-      <p><%= button_to "update", "/art_works/#{art.id}/edit", method: :get %></p>
-      <p><%= button_to "delete", "/art_works/#{art.id}", method: :delete %></p>
+<div class="form-wrap">
+  <% if @art_works %>
+
+    <% if current_user.id == @creator.id %>
+      <p><%= button_to "add new work", new_art_work_path, method: :get %></p>
+    <%end %>
+
+    <% @art_works.each do |art| %>
+      <h4><%= art.title %></h4>
+      <img src="<%= art.attachment %>" class="image">
+      <% if art.user_id == current_user.id %>
+        <p><%= button_to "update", edit_art_work_path(art.id), method: :get %></p>
+        <p><%= button_to "delete", art_work_path(art.id), method: :delete %></p>
+      <%end %>
     <%end %>
   <%end %>
-
-  <% if current_user.id == @creator.id %>
-    <p><%= button_to "add new work", "/art_works/new", method: :get %></p>
-  <%end %>
-<%end %>
-
+</div>

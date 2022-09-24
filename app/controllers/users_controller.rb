@@ -13,9 +13,9 @@ class UsersController < ApplicationController
     @user = User.new(user_create_params)
     if @user.save
       session[:user_id] = @user.id
-      redirect_to '/'
+      redirect_to root_path
     else
-      render '/users/new'
+      render new_user_path
     end
   end
 

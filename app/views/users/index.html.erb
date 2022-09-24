@@ -3,8 +3,8 @@
   <a class="welcome-links" href="/art_works/<%=artist.id %>"><%= artist.nickname %></a><br>
 <%end %>
 
-<%# flash.each do |type, message| %>
-<!--  <div class="alert alert-info" >-->
-    <%#= message %>
-<!--  </div>-->
-<%# end %>
+<% flash.each do |type, msgs| %>
+  <div class="alert alert-info" >
+    <%= msgs %>
+  </div>
+<% end %>

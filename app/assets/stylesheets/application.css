@@ -89,3 +89,7 @@
     max-height: 90%;
     max-width: 90%;
 }
+
+.form-wrap {
+    margin: 10px;
+}
