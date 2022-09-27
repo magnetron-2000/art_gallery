@@ -31,5 +31,9 @@ module ArtGallery
 
     # Don't generate system test files.
     config.generators.system_tests = nil
+
+    I18n.load_path += Dir[Rails.root.join('lib', 'locale', '*.{rb,yml}')]
+    I18n.available_locales = [:en, :ua]
+
   end
 end

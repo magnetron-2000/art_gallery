@@ -1,0 +1,10 @@
+<h1>Add new work</h1>
+<div class="form-wrap">
+    <%= form_for :art_work, url: art_works_path(@art_work), html: {multipart: true}, method: :post do |f| %>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %><br>
+      <%= f.file_field :attachment %>
+      <%= f.submit %>
+    <% end %>
+</div>
+
