@@ -18,7 +18,7 @@ class ArtWorksController < ApplicationController
       redirect_to root_path
     else
       flash.alert = @art_work.errors.full_messages
-      render :new
+      render :new,  :status => 400
     end
   end
 
@@ -30,7 +30,7 @@ class ArtWorksController < ApplicationController
       redirect_to art_work_path(current_user.id)
     else
       flash.alert = @art_work.errors.full_messages
-      redirect_to edit_art_work_path(@art_work)
+      redirect_to edit_art_work_path(@art_work),  :status => 400
     end
   end
 
